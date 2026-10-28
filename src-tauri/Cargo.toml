@@ -1,0 +1,25 @@
+[package]
+name = "prompt-safe"
+version = "0.2.0"
+description = "Scan prompts for secrets before pasting them into an AI agent"
+edition = "2021"
+
+[lib]
+name = "prompt_safe_lib"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-clipboard-manager = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regex = "1"
+tauri-plugin-dialog = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-window-state = "2"
+
+[profile.dev.package.regex]
+opt-level = 3

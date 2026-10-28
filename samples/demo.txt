@@ -1,0 +1,58 @@
+# Prompt Safe demo — every value below is FAKE. Paste this file into the app;
+# each labelled line should produce a finding of the named category.
+
+Deploy failed, here's my env and the log, can you help?
+
+AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+OPENAI_API_KEY=sk-proj-abcd1234abcd1234abcd1234abcd1234
+ANTHROPIC_API_KEY=sk-ant-api03-abcd1234efgh5678ijkl
+GITHUB_TOKEN=ghp_0123456789abcdefghijklmnopqrstuvwxyz
+GITHUB_PAT=github_pat_0123456789abcdefghijklmn
+GITLAB_TOKEN=glpat-abcdefghij0123456789
+GOOGLE_API_KEY=AIza0123456789abcdefghijklmnopqrstuvwxy
+STRIPE_SECRET=sk_live_abcdefghijklmnop1234
+STRIPE_TEST=sk_test_abcdefghijklmnop1234
+SLACK_BOT_TOKEN=xoxb-1234567890-abcdefghij
+SLACK_WEBHOOK=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXX
+SENDGRID_API_KEY=SG.abcdefghijklmnopqrstuv.abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG
+TWILIO_KEY=SK0123456789abcdef0123456789abcdef
+TWILIO_SID=AC0123456789abcdef0123456789abcdef
+NPM_TOKEN=npm_0123456789abcdefghijklmnopqrstuvwxyz
+HF_TOKEN=hf_AbCdEfGhIjKlMnOpQrStUvWxYz01234567
+GROQ_API_KEY=gsk_AbCdEfGhIjKlMnOpQrStUvWxYz0123456789AbCdEfGhIjKl
+XAI_API_KEY=xai-AbCdEfGhIj0123456789AbCdEfGhIj0123456789AbCdEfGhIj0123456789AbCdEfGhIj0123456789
+GOOGLE_CLIENT_SECRET=GOCSPX-AbCdEfGhIjKlMnOpQrStUvWx12
+DO_TOKEN=dop_v1_0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+SHOPIFY_TOKEN=shpat_0123456789abcdef0123456789abcdef
+SUPABASE_SECRET=sb_secret_AbCdEfGhIjKlMnOpQrStUv
+DATABRICKS=dapi0123456789abcdef0123456789abcdef
+MAILGUN=key-0123456789abcdef0123456789abcdef
+DISCORD_BOT=MTIzNDU2Nzg5MDEyMzQ1Njc4.GaBcDe.AbCdEfGhIjKlMnOpQrStUvWxYz0123456
+DISCORD_HOOK=https://discord.com/api/webhooks/123456789012345678/AbCdEfGhIj0123456789AbCdEfGhIj0123456789AbCdEfGhIj0123456789AbCdEfGhIj
+TELEGRAM_BOT=123456789:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsawq
+AZURE_CONN=DefaultEndpointsProtocol=https;AccountKey=abcdefghijklmnopqrstuvwxyz0123456789ABCD==;EndpointSuffix=core.windows.net
+SAS_URL=https://acct.blob.core.windows.net/c/b?sv=2020&sig=abc%2Bdef0123456789abcdefghijklmnopqrs
+DATABASE_URL=postgres://admin:hunter22secret@db.example.com:5432/app
+DB_PASSWORD=supersecret123456
+SESSION_JWT=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abcdefghijklmnop
+curl -H "Authorization: Bearer abcdef1234567890abcdef" https://api.example.com
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEfakefakefakefakefakefakefakefake
+fakefakefakefakefakefakefakefakefake
+-----END RSA PRIVATE KEY-----
+
+# Unknown-format token — should be caught by the entropy detector:
+session_token kJ8vQ2xR9mN4pL7wZ1yT6uB3eH5sD0aF issued at boot
+
+# Log noise below must produce NO findings (hashes, UUIDs, paths, timestamps):
+commit 356a192b7913b04c54574d18c28d46e6395428ab
+request-id: 550e8400-e29b-41d4-a716-446655440000
+loaded /usr/local/lib/node_modules1/pkg
+2026-07-09T12:00:01Z INFO listening on port 8080 status=200 path=/api/users
+
+# Placeholder values must be ignored too:
+PASSWORD=changeme123
+API_KEY=<your-key-here>
+SECRET_TOKEN=${SECRET_TOKEN}

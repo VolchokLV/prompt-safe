@@ -1,0 +1,65 @@
+name: Release
+
+# Push a tag like v0.2.0 to build installers and create a DRAFT GitHub
+# release. Review the draft, then publish it.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - run: npm ci
+
+      - name: Rust tests
+        working-directory: src-tauri
+        run: cargo test
+
+      - name: Build installers and create draft release
+        id: tauri
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: Prompt Safe ${{ github.ref_name }}
+          releaseBody: |
+            Offline secret scanner for AI prompts. See the README for details.
+
+            **Windows SmartScreen:** the installers are not code-signed yet, so Windows may
+            show "Windows protected your PC". Click **More info**, then **Run anyway**.
+            Verify the download against `SHA256SUMS.txt` below.
+          releaseDraft: true
+          prerelease: false
+
+      - name: Generate and upload SHA-256 checksums
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARTIFACTS: ${{ steps.tauri.outputs.artifactPaths }}
+        run: |
+          $paths = $env:ARTIFACTS | ConvertFrom-Json | Where-Object { Test-Path $_ -PathType Leaf }
+          $lines = foreach ($p in $paths) {
+            $h = (Get-FileHash -Algorithm SHA256 $p).Hash.ToLower()
+            "$h  $(Split-Path $p -Leaf)"
+          }
+          $lines | Set-Content -Encoding ascii SHA256SUMS.txt
+          Get-Content SHA256SUMS.txt
+          gh release upload "${{ github.ref_name }}" SHA256SUMS.txt --clobber
