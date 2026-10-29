@@ -7,7 +7,7 @@
 - [x] LICENSE (MIT), SECURITY, PRIVACY, CONTRIBUTING, CI, release workflow
 - [ ] Manual QA in `npm run tauri dev` + install test of the MSI on a clean machine
 - [ ] Screenshot/GIF in README
-- [ ] Initial commit, push to `github.com/VolchokLV/prompt-safe`, enable private vulnerability reporting
+- [x] Initial commit, push to `github.com/VolchokLV/prompt-safe`, enable private vulnerability reporting
 - [ ] Tag `v0.2.0`, review the draft release, publish
 
 ## Next: Microsoft Store (v0.2.x)

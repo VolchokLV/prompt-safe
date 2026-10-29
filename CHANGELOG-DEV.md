@@ -1,5 +1,12 @@
 # CHANGELOG-DEV
 
+## 2026-10-29 — Session 5: Published to GitHub
+
+- Created the public repo `github.com/VolchokLV/prompt-safe` and pushed `main`.
+- GitHub push protection blocked the fake tokens in `samples/demo.txt` and the pattern tests. Each was allowed as "used in tests". The steps are now in `docs/RELEASING.md`.
+- Enabled private vulnerability reporting.
+- Next: manual QA, then tag `v0.2.0` and publish the draft release.
+
 ## 2026-10-28 — Session 4: Pre-launch review & v0.2.0 launch prep
 
 Full code/UI review, then implemented every finding. Launch plan: open-source GitHub release first, then Microsoft Store via MSIX (free individual account; Store signs MSIX for free).

@@ -23,6 +23,14 @@ Two channels, in this order:
    **draft** release with `SHA256SUMS.txt`. Smoke-test the installers, then
    publish the draft.
 
+### Push protection and the fake test tokens
+
+`samples/demo.txt` and the pattern tests contain realistic **fake** tokens.
+GitHub push protection blocks a push the first time it sees a new one. Open
+each unblock link in the error, choose **"It's used in tests"**, and push
+again. GitHub shows 5 detections at a time, so this can take several rounds.
+Once a value is allowed it won't block again.
+
 ### Optional: signing direct downloads
 
 Unsigned installers show the SmartScreen "Windows protected your PC" prompt.
