@@ -89,7 +89,7 @@ export default function FindingGroup({
           {group.findings.map((f) => (
             <li
               key={f.id}
-              className={`flex items-center gap-3 px-4 py-1.5 text-xs ${
+              className={`group flex items-center gap-3 pr-4 text-xs hover:bg-neutral-900 ${
                 f.dismissed ? "opacity-50" : ""
               }`}
             >
@@ -97,17 +97,19 @@ export default function FindingGroup({
                 onClick={() => onJumpToFinding(f)}
                 title="Select in input"
                 aria-label={`Select ${f.label} on line ${f.line} in the input`}
-                className="w-16 shrink-0 text-left font-mono text-neutral-300 hover:text-white hover:underline"
+                className="flex min-w-0 flex-1 items-center gap-3 py-1.5 pl-4 text-left font-mono"
               >
-                L{f.line.toLocaleString()}
-                {f.endLine > f.line ? `–${f.endLine.toLocaleString()}` : ""}
+                <span className="w-16 shrink-0 text-neutral-300 group-hover:text-white group-hover:underline">
+                  L{f.line.toLocaleString()}
+                  {f.endLine > f.line ? `–${f.endLine.toLocaleString()}` : ""}
+                </span>
+                <span className="min-w-0 flex-1 truncate text-neutral-400">
+                  {f.maskedPreview}
+                </span>
+                <span className="hidden truncate text-neutral-500 lg:inline">
+                  {f.placeholder}
+                </span>
               </button>
-              <span className="min-w-0 flex-1 truncate font-mono text-neutral-400">
-                {f.maskedPreview}
-              </span>
-              <span className="hidden truncate font-mono text-neutral-500 lg:inline">
-                {f.placeholder}
-              </span>
               {f.dismissed ? (
                 <button
                   onClick={() => onUndismiss(f.id)}

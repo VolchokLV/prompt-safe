@@ -5,6 +5,7 @@
 - Created the public repo `github.com/VolchokLV/prompt-safe` and pushed `main`.
 - GitHub push protection blocked the fake tokens in `samples/demo.txt` and the pattern tests. Each was allowed as "used in tests". The steps are now in `docs/RELEASING.md`.
 - Enabled private vulnerability reporting.
+- QA fix: in the Findings list, the whole finding row now jumps to and selects the secret in the input. Before, only the small `L<line>` label was clickable, so clicks on the row did nothing.
 - Next: manual QA, then tag `v0.2.0` and publish the draft release.
 
 ## 2026-10-28 — Session 4: Pre-launch review & v0.2.0 launch prep
